@@ -55,8 +55,7 @@ RUN mkdir -p /var/lib/alternatives && \
     ostree container commit
 
 RUN rpm-ostree override remove \
-        steam && \
-    rpm-ostree override remove \
+        steam \
         lutris \
         fluidsynth \
         fluid-soundfont-gm \
@@ -71,6 +70,9 @@ RUN rpm-ostree override remove \
         protontricks \
         mangohud.x86_64 \
         mangohud.i686 \
+        gamescope.x86_64 \
+        gamescope-libs.i686 \
+        gamescope-shaders && \
     ostree container commit
 
 ## NOTES:
