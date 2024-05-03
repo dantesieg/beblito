@@ -57,11 +57,6 @@ RUN mkdir -p /var/lib/alternatives && \
 RUN rpm-ostree override remove \
         steam \
         lutris \
-        fluidsynth \
-        fluid-soundfont-gm \
-        qsynth \
-        wxGTK \
-        libFAudio \
         wine-core.x86_64 \
         wine-core.i686 \
         wine-pulseaudio.x86_64 \
