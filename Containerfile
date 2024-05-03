@@ -95,13 +95,13 @@ RUN rpm-ostree override remove \
         wine-pulseaudio.i686 \
         winetricks \
         protontricks \
-        latencyflex-vulkan-layer \
-        vkBasalt.x86_64 \
-        vkBasalt.i686 \
+#        latencyflex-vulkan-layer \
+#        vkBasalt.x86_64 \
+#        vkBasalt.i686 \
         mangohud.x86_64 \
         mangohud.i686 \
-        vk_hdr_layer.x86_64 \
-        vk_hdr_layer.i686 && \
+#        vk_hdr_layer.x86_64 \
+#        vk_hdr_layer.i686 && \
     ostree container commit
 
 ## NOTES:
