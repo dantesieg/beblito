@@ -54,7 +54,7 @@ RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     ostree container commit
 
-RUN rpm-ostree override remove steam lutris wine-core.x86_64 wine-pulseaudio.x86_64 winetricks protontricks mangohud.x86_64 gamescope.x86_64 gamescope-libs.i686 gamescope-shaders && ostree container commit
+RUN rpm-ostree override remove steam lutris winetricks protontricks && ostree container commit
 
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
