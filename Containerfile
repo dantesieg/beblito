@@ -58,7 +58,7 @@ RUN rpm-ostree override remove steam lutris winetricks protontricks && ostree co
 
 RUN rpm-ostree override remove gamescope.x86_64 gamescope-libs.i686 gamescope-shaders && ostree container commit
 
-# RUN rpm-ostree override remove gamescope.x86_64 gamescope-libs.i686 gamescope-shaders && ostree container commit
+# RUN rpm-ostree override remove gamescope.x86_64 gamescope-shaders && ostree container commit
 
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
