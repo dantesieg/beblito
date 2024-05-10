@@ -56,6 +56,8 @@ RUN mkdir -p /var/lib/alternatives && \
 
 RUN rpm-ostree override remove steam lutris winetricks protontricks && ostree container commit
 
+RUN rpm-ostree override remove mangohud.x86_64 mangohud.i686 mangohud gamescope.x86_64 gamescope-libs.i686 gamescope-shaders && ostree container commit
+
 # RUN rpm-ostree override remove gamescope.x86_64 gamescope-libs.i686 gamescope-shaders && ostree container commit
 
 ## NOTES:
