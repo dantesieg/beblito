@@ -42,7 +42,7 @@ ARG IMAGE_NAME="${IMAGE_NAME:-beblito}"
 
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
-FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
+FROM quay.io/fedora-ostree-desktops/kinoite:40
 
 
 ### 3. MODIFICATIONS
@@ -61,7 +61,7 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
     curl -Lo /etc/yum.repos.d/fedora-nvidia.repo https://negativo17.org/repos/fedora-nvidia.repo && \
     ostree container commit
 
-RUN rm -rf /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo && /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:phracek:PyCharm.repo && /etc/yum.repos.d/_copr_ublue-os-akmods.repo && ostree container commit
+# RUN rm -rf /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo && /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:phracek:PyCharm.repo && /etc/yum.repos.d/_copr_ublue-os-akmods.repo && ostree container commit
 
 RUN rpm-ostree cliwrap install-to-root /
 
@@ -71,7 +71,7 @@ RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfr
 
 RUN rpm-ostree install nvidia-driver nvidia-driver-libs.i686 && ostree container commit
 
-# RUN rpm-ostree kargs --append=rd.driver.blacklist=nouveau && rpm-ostree kargs --append=modprobe.blacklist=nouveau && rpm-ostree kargs --append=nvidia-drm.modeset=1 && ostree container commit
+RUN rpm-ostree kargs --append=rd.driver.blacklist=nouveau && rpm-ostree kargs --append=modprobe.blacklist=nouveau && rpm-ostree kargs --append=nvidia-drm.modeset=1 && ostree container commit
 
 # RUN rpm-ostree override remove steam lutris winetricks protontricks && ostree container commit
 # RUN rpm-ostree override remove gamescope gamescope-shaders && ostree container commit
