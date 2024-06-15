@@ -67,6 +67,8 @@ RUN rpm-ostree cliwrap install-to-root /
 
 RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 
+RUN rpm-ostree install libglvnd-gles && ostree container commit
+
 RUN rpm-ostree install nvidia-driver nvidia-driver-libs.i686 && ostree container commit
 
 RUN rpm-ostree kargs --append=rd.driver.blacklist=nouveau && rpm-ostree kargs --append=modprobe.blacklist=nouveau && rpm-ostree kargs --append=nvidia-drm.modeset=1 && ostree container commit
