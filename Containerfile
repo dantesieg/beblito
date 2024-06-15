@@ -15,7 +15,7 @@
 # - "base"
 #
 #  "aurora", "bazzite", "bluefin" or "ucore" may also be used but have different suffixes.
-ARG SOURCE_IMAGE="bazzite"
+ARG SOURCE_IMAGE="kinoite"
 
 ## SOURCE_SUFFIX arg should include a hyphen and the appropriate suffix name
 # These examples all work for silverblue/kinoite/sericea/onyx/lazurite/vauxite/base
@@ -33,11 +33,12 @@ ARG SOURCE_IMAGE="bazzite"
 # - stable-zfs
 # - stable-nvidia-zfs
 # - (and the above with testing rather than stable)
-ARG SOURCE_SUFFIX="-nvidia"
+ARG SOURCE_SUFFIX="-main"
 
 ## SOURCE_TAG arg must be a version built for the specific image: eg, 39, 40, gts, latest
 ARG SOURCE_TAG="latest"
 
+ARG IMAGE_NAME="${IMAGE_NAME:-beblito}"
 
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
@@ -54,8 +55,21 @@ RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     ostree container commit
 
-RUN rpm-ostree override remove steam lutris winetricks protontricks && ostree container commit
+RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
+    chmod +x /usr/bin/copr && \
+    curl -Lo /etc/yum.repos.d/whitehara-kernel-tkg-fedora-40.repo https://copr.fedorainfracloud.org/coprs/whitehara/kernel-tkg/repo/fedora-40/whitehara-kernel-tkg-fedora-40.repo && \
+    curl -Lo /etc/yum.repos.d/fedora-nvidia.repo https://negativo17.org/repos/fedora-nvidia.repo && \
+    ostree container commit
 
+RUN rm -rf /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo && ostree container commit
+
+RUN rpm-ostree cliwrap install-to-root && rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
+
+RUN rpm-ostree install nvidia-driver nvidia-driver-libs.i686 && ostree container commit
+
+RUN rpm-ostree kargs --append=rd.driver.blacklist=nouveau && rpm-ostree kargs --append=modprobe.blacklist=nouveau && rpm-ostree kargs --append=nvidia-drm.modeset=1 && ostree container commit
+
+# RUN rpm-ostree override remove steam lutris winetricks protontricks && ostree container commit
 # RUN rpm-ostree override remove gamescope gamescope-shaders && ostree container commit
 
 ## NOTES:
