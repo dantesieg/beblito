@@ -63,7 +63,9 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
 
 RUN rm -rf /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo && ostree container commit
 
-RUN rpm-ostree cliwrap install-to-root && rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
+RUN rpm-ostree cliwrap install-to-root /
+
+RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 
 RUN rpm-ostree install nvidia-driver nvidia-driver-libs.i686 && ostree container commit
 
