@@ -42,7 +42,7 @@ ARG IMAGE_NAME="${IMAGE_NAME:-beblito}"
 
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
-FROM quay.io/fedora-ostree-desktops/kinoite:40
+FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 
 ### 3. MODIFICATIONS
