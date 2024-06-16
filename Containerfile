@@ -71,7 +71,7 @@ RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfr
 
 RUN rpm-ostree install nvidia-driver nvidia-driver-libs.i686 && ostree container commit
 
-RUN rpm-ostree kargs --append=rd.driver.blacklist=nouveau && rpm-ostree kargs --append=modprobe.blacklist=nouveau && rpm-ostree kargs --append=nvidia-drm.modeset=1 && ostree container commit
+RUN rpm-ostree kargs --append=rd.driver.blacklist=nouveau --append=modprobe.blacklist=nouveau --append=nvidia-drm.modeset=1 && ostree container commit
 
 # RUN rpm-ostree override remove steam lutris winetricks protontricks && ostree container commit
 # RUN rpm-ostree override remove gamescope gamescope-shaders && ostree container commit
