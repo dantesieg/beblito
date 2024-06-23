@@ -69,7 +69,7 @@ RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfr
 
 # RUN rpm-ostree install libglvnd-gles && ostree container commit
 
-RUN rpm-ostree install nvidia-driver nvidia-driver-libs.i686 && ostree container commit
+# RUN rpm-ostree install nvidia-driver nvidia-driver-libs.i686 && ostree container commit
 
 RUN rpm-ostree override remove firefox firefox-langpacks && ostree container commit
 
