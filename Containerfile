@@ -39,6 +39,7 @@ ARG SOURCE_SUFFIX="-main"
 ARG SOURCE_TAG="latest"
 
 ARG IMAGE_NAME="${IMAGE_NAME:-beblito}"
+ARG KMOD_SRC="${KMOD_SRC:-ghcr.io/ublue-os/ucore-kmods:40}"
 
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
@@ -49,7 +50,8 @@ FROM quay.io/fedora-ostree-desktops/kinoite:40
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
-COPY build.sh /tmp/build.sh
+COPY --from=${KMOD_SRC} /rpms/kmods/nvidia/*.rpm /tmp/rpms/nvidia/
+COPY *.sh /tmp/
 
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
