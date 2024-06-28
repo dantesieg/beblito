@@ -22,9 +22,10 @@ KERNEL="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
 rpm-ostree install \
     akmods \
-    dnf \
+    dnf5 \
     mock
 
+ln -s /usr/bin/dnf5 /usr/bin/dnf
 
     curl -L https://negativo17.org/repos/fedora-nvidia.repo -o /etc/yum.repos.d/fedora-nvidia.repo
 
@@ -67,5 +68,3 @@ rpm -qa |grep nvidia-kmod
 
 #    rpm-ostree install \
 #        /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
-
-systemctl enable podman.socket
