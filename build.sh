@@ -32,7 +32,6 @@ rpm-ostree install /tmp/rpms/ublue-os-ucore-addons-*.rpm
     curl -L https://negativo17.org/repos/fedora-nvidia.repo -o /etc/yum.repos.d/fedora-nvidia.repo
 
     rpm-ostree install /tmp/rpms/nvidia/ublue-os-ucore-nvidia-*.rpm
-    sed -i '0,/enabled=0/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/nvidia-container-toolkit.repo
 
     rpm-ostree install \
         /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
