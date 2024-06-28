@@ -64,24 +64,7 @@ RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     ostree container commit
 
-# RUN rm -rf /etc/yum.repos.d/rpmfusion-nonfree-nvidia-driver.repo && /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:phracek:PyCharm.repo && /etc/yum.repos.d/_copr_ublue-os-akmods.repo && ostree container commit
-
-# RUN rpm-ostree install libglvnd-gles && ostree container commit
-
-# RUN rpm-ostree install nvidia-driver nvidia-driver-libs.i686 && ostree container commit
-
-RUN rpm-ostree override remove firefox firefox-langpacks && ostree container commit
-
-# RUN rpm-ostree kargs --append=rd.driver.blacklist=nouveau --append=modprobe.blacklist=nouveau --append=nvidia-drm.modeset=1 && ostree container commit
-
-# RUN rpm-ostree override remove steam lutris winetricks protontricks && ostree container commit
-# RUN rpm-ostree override remove gamescope gamescope-shaders && ostree container commit
-
-RUN find /var/cache/akmods/nvidia
-
-FROM scratch
-
-COPY --from=builder /var/cache/akmods/nvidia /rpms
+RUN rpm-ostree override remove firefox firefox-langpacks dnf mock && ostree container commit
 
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
