@@ -21,6 +21,7 @@ KERNEL="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 #### Example for enabling a System Unit File
 
 rpm-ostree install \
+    akmods \
     dnf \
     mock
 
