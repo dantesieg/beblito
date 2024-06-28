@@ -52,12 +52,14 @@ FROM quay.io/fedora-ostree-desktops/kinoite:40 AS builder
 
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
-    curl -Lo /etc/yum.repos.d/whitehara-kernel-tkg-fedora-40.repo https://copr.fedorainfracloud.org/coprs/whitehara/kernel-tkg/repo/fedora-40/whitehara-kernel-tkg-fedora-40.repo && \
+    curl -Lo /etc/yum.repos.d/group_kernel-vanilla-next-fedora-rawhide.repo https://copr.fedorainfracloud.org/coprs/g/kernel-vanilla/${copr}/repo/fedora-rawhide/group_kernel-vanilla-next-fedora-rawhide.repo && \
+    # curl -Lo /etc/yum.repos.d/whitehara-kernel-tkg-fedora-40.repo https://copr.fedorainfracloud.org/coprs/whitehara/kernel-tkg/repo/fedora-40/whitehara-kernel-tkg-fedora-40.repo && \
     ostree container commit
 
 RUN rpm-ostree cliwrap install-to-root /
 
-RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
+RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:group_kernel-vanilla:next' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
+# RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 
 COPY *.sh /tmp/
 RUN mkdir -p /var/lib/alternatives && \
