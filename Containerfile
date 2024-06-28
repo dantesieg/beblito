@@ -43,7 +43,7 @@ ARG KMOD_SRC="${KMOD_SRC:-ghcr.io/ublue-os/ucore-kmods:40}"
 
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
-FROM quay.io/fedora-ostree-desktops/kinoite:40
+FROM quay.io/fedora-ostree-desktops/kinoite:40 AS builder
 
 
 ### 3. MODIFICATIONS
@@ -76,6 +76,12 @@ RUN rpm-ostree override remove firefox firefox-langpacks && ostree container com
 
 # RUN rpm-ostree override remove steam lutris winetricks protontricks && ostree container commit
 # RUN rpm-ostree override remove gamescope gamescope-shaders && ostree container commit
+
+RUN find /var/cache/akmods/nvidia
+
+FROM scratch
+
+COPY --from=builder /var/cache/akmods/nvidia /rpms
 
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
