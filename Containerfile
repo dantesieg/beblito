@@ -60,7 +60,7 @@ RUN rpm-ostree cliwrap install-to-root /
 
 RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:group_kernel-vanilla:next' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 # RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
-RUN rpm-ostree install fontconfig-font-replacements fontconfig-enhanced-defaults && ostree container commit
+RUN rpm-ostree install fontconfig-font-replacements fontconfig-enhanced-defaults distrobox && ostree container commit
 
 COPY *.sh /tmp/
 RUN mkdir -p /var/lib/alternatives && \
