@@ -59,11 +59,11 @@ EOF
 mv /var/cache/akmods/nvidia/*.rpm \
    /tmp/rpms/nvidia/
 
-dnf remove nvidia-kmod-${KERNEL}
+rpm -qa |grep nvidia-kmod
 
-    rpm-ostree install \
-        /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
+#    rpm-ostree install \
+#        /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
         
-rpm-ostree remove dnf
+rpm-ostree remove dnf mock akmods
 
 systemctl enable podman.socket
