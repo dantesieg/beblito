@@ -63,7 +63,5 @@ rpm -qa |grep nvidia-kmod
 
 #    rpm-ostree install \
 #        /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
-        
-rpm-ostree remove dnf mock akmods
 
 systemctl enable podman.socket
