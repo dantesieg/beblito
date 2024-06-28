@@ -65,6 +65,9 @@ cp -v /var/cache/akmods/nvidia/*.rpm \
 
 rpm -qa |grep nvidia-kmod
 
+rpm -e –nodeps –noscripts yum mock
+dnf autoremove
+
 #    rpm-ostree install \
 #        /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
 
