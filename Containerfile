@@ -50,8 +50,6 @@ FROM quay.io/fedora-ostree-desktops/kinoite:40
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
-COPY --from=ghcr.io/ublue-os/ucore-kmods:stable /rpms/kmods/*.rpm /tmp/rpms/
-COPY --from=ghcr.io/ublue-os/ucore-kmods:stable /rpms/kmods/nvidia/*.rpm /tmp/rpms/nvidia/
 COPY *.sh /tmp/
 
 RUN mkdir -p /var/lib/alternatives && \
