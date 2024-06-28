@@ -50,7 +50,7 @@ FROM quay.io/fedora-ostree-desktops/kinoite:40
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
-COPY --from=${KMOD_SRC} /rpms/kmods/nvidia/*.rpm /tmp/rpms/nvidia/
+COPY --from=ghcr.io/ublue-os/ucore-kmods:stable /rpms/kmods/nvidia/*.rpm /tmp/rpms/nvidia/
 COPY *.sh /tmp/
 
 RUN mkdir -p /var/lib/alternatives && \
@@ -67,7 +67,7 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
 
 RUN rpm-ostree cliwrap install-to-root /
 
-RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
+# RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 
 # RUN rpm-ostree install libglvnd-gles && ostree container commit
 
