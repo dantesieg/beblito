@@ -52,8 +52,8 @@ FROM quay.io/fedora-ostree-desktops/kinoite:40 AS builder
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
     curl -s "https://copr.fedorainfracloud.org/coprs/g/kernel-vanilla/next/repo/fedora-rawhide/group_kernel-vanilla-next-fedora-rawhide.repo" | sudo tee "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:group_kernel-vanilla:next.repo" && \
-    # curl -Lo /etc/yum.repos.d/tigro-better_fonts-fedora-40.repo https://copr.fedorainfracloud.org/coprs/tigro/better_fonts/repo/fedora-40/tigro-better_fonts-fedora-40.repo && \
-    curl -Lo /etc/yum.repos.d/whitehara-kernel-tkg-fedora-40.repo https://copr.fedorainfracloud.org/coprs/whitehara/kernel-tkg/repo/fedora-40/whitehara-kernel-tkg-fedora-40.repo && \
+    curl -Lo /etc/yum.repos.d/tigro-better_fonts-fedora-40.repo https://copr.fedorainfracloud.org/coprs/tigro/better_fonts/repo/fedora-40/tigro-better_fonts-fedora-40.repo && \
+    # curl -Lo /etc/yum.repos.d/whitehara-kernel-tkg-fedora-40.repo https://copr.fedorainfracloud.org/coprs/whitehara/kernel-tkg/repo/fedora-40/whitehara-kernel-tkg-fedora-40.repo && \
     ostree container commit
 
 RUN rpm-ostree cliwrap install-to-root /
