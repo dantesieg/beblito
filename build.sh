@@ -59,7 +59,7 @@ EOF
 mv /var/cache/akmods/nvidia/*.rpm \
    /tmp/rpms/nvidia/
 
-    rpm-ostree install \
-        /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
+#    rpm-ostree install \
+#        /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
 
 systemctl enable podman.socket
