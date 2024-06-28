@@ -64,7 +64,7 @@ RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     ostree container commit
 
-RUN rpm-ostree override remove firefox firefox-langpacks dnf mock && ostree container commit
+RUN rpm-ostree override remove firefox firefox-langpacks dnf dnf5 && ostree container commit
 
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
