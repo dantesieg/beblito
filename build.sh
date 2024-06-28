@@ -48,6 +48,7 @@ modinfo /usr/lib/modules/${KERNEL}/extra/nvidia/nvidia{,-drm,-modeset,-peermem,-
 
 # create a directory for later copying of resulting nvidia specific artifacts
 mkdir -p /var/cache/rpms/kmods/nvidia
+mkdir -p /tmp/rpms/nvidia/
 
 cat <<EOF > /var/cache/rpms/kmods/nvidia/nvidia-vars
 KERNEL_VERSION=${KERNEL_VERSION}
