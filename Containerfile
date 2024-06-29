@@ -43,12 +43,13 @@ ARG IMAGE_NAME="${IMAGE_NAME:-beblito}"
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
 FROM quay.io/fedora-ostree-desktops/kinoite:40 AS builder
-FROM ghcr.io/dantesieg/beblitos:latest AS akmods
-
 
 ### 3. MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
+
+COPY --from=ghcr.io/dantesieg/beblitos:latest /rpms /tmp/akmods-rpms
+RUN find /tmp/akmods-rpms && ostree container commit
 
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
