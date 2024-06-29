@@ -50,7 +50,7 @@ FROM ghcr.io/dantesieg/beblitos:latest AS akmods
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
-COPY --from=akmods /rpms /tmp/akmods-rpms
+COPY --from=ghcr.io/dantesieg/beblitos:latest /rpms /tmp/akmods-rpms
 
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
