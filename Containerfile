@@ -58,8 +58,7 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
     # curl -Lo /etc/yum.repos.d/whitehara-kernel-tkg-fedora-40.repo https://copr.fedorainfracloud.org/coprs/whitehara/kernel-tkg/repo/fedora-40/whitehara-kernel-tkg-fedora-40.repo && \
     ostree container commit
 
-RUN rpm-ostree cliwrap install-to-root && /
-    ostree container commit
+RUN rpm-ostree cliwrap install-to-root /
 
 RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:group_kernel-vanilla:next' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 # RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
