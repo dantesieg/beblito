@@ -88,7 +88,7 @@ rpm-ostree install \
     nvidia-modprobe \
     nvidia-persistenced \
     nvidia-settings \
-    /tmp/akmods-rpms/kmods/kmod-nvidia*.rpm && \
+    /tmp/akmods-rpms/kmod-nvidia*.rpm && \
     ostree container commit
 
 ## NOTES:
