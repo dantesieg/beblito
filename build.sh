@@ -24,8 +24,12 @@ find /tmp/akmods-rpms/
 
 sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-cisco-openh264.repo
 sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-updates-archive.repo
+sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora.repo
 
 rpm-ostree override remove mesa-libEGL
+
+rpm-ostree install mesa-libEGL
+sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora.repo
 
 rpm-ostree install \
     libva-nvidia-driver \
