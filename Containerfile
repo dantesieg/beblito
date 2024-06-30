@@ -69,7 +69,7 @@ RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     ostree container commit
 
-RUN rpm-ostree override remove firefox firefox-langpacks dnf dnf5 dnf5-plugins mock mock-core-configs mock-filesystem yum dnf-plugins-core dnf-utils dnf-data python3-dnf python3-dnf-plugins-core libdnf libdnf5 libdnf5-cli python3-libdnf python3-hawkey && ostree container commit
+RUN rpm-ostree override remove firefox firefox-langpacks krfb krfb-libs dnf dnf5 dnf5-plugins mock mock-core-configs mock-filesystem yum dnf-plugins-core dnf-utils dnf-data python3-dnf python3-dnf-plugins-core libdnf libdnf5 libdnf5-cli python3-libdnf python3-hawkey && ostree container commit
 
 COPY --from=ghcr.io/dantesieg/beblitos:latest /rpms /tmp/akmods-rpms
 RUN find /tmp/akmods-rpms && ostree container commit
