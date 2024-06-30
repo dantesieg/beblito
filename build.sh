@@ -26,8 +26,6 @@ sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-cisco-openh264.repo
 sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-updates-archive.repo
 sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora.repo
 
-rpm-ostree override remove mesa-libEGL
-
 cd /tmp
 
 curl -L https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libEGL-24.1.2-7.fc40.x86_64.rpm -o mesa-libEGL-24.1.2-7.fc40.x86_64.rpm
