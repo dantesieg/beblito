@@ -66,6 +66,7 @@ RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfr
 RUN rpm-ostree install fontconfig-font-replacements fontconfig-enhanced-defaults distrobox && ostree container commit
 
 COPY *.sh /tmp/
+COPY --from=ghcr.io/dantesieg/beblitos:latest /rpms /tmp/akmods-rpms
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     ostree container commit
