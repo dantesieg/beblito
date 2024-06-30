@@ -20,6 +20,8 @@ KERNEL="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
 #### Example for enabling a System Unit File
 
+find /tmp/akmods-rpms/
+
 rpm-ostree install \
     libva-nvidia-driver \
     mesa-vulkan-drivers.i686 \
