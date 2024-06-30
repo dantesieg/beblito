@@ -55,6 +55,7 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
     chmod +x /usr/bin/copr && \
     curl -s "https://copr.fedorainfracloud.org/coprs/g/kernel-vanilla/next/repo/fedora-rawhide/group_kernel-vanilla-next-fedora-rawhide.repo" | sudo tee "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:group_kernel-vanilla:next.repo" && \
     curl -Lo /etc/yum.repos.d/tigro-better_fonts-fedora-40.repo https://copr.fedorainfracloud.org/coprs/tigro/better_fonts/repo/fedora-40/tigro-better_fonts-fedora-40.repo && \
+    curl -L https://negativo17.org/repos/fedora-nvidia.repo -o /etc/yum.repos.d/fedora-nvidia.repo && \
     # curl -Lo /etc/yum.repos.d/whitehara-kernel-tkg-fedora-40.repo https://copr.fedorainfracloud.org/coprs/whitehara/kernel-tkg/repo/fedora-40/whitehara-kernel-tkg-fedora-40.repo && \
     ostree container commit
 
@@ -64,15 +65,31 @@ RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfr
 # RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 RUN rpm-ostree install fontconfig-font-replacements fontconfig-enhanced-defaults distrobox && ostree container commit
 
-COPY *.sh /tmp/
-RUN mkdir -p /var/lib/alternatives && \
-    /tmp/build.sh && \
-    ostree container commit
+#COPY *.sh /tmp/
+#RUN mkdir -p /var/lib/alternatives && \
+#    /tmp/build.sh && \
+#    ostree container commit
 
-RUN rpm-ostree override remove firefox firefox-langpacks krfb krfb-libs dnf dnf5 dnf5-plugins mock mock-core-configs mock-filesystem yum dnf-plugins-core dnf-utils dnf-data python3-dnf python3-dnf-plugins-core libdnf libdnf5 libdnf5-cli python3-libdnf python3-hawkey && ostree container commit
+# RUN rpm-ostree override remove firefox firefox-langpacks krfb krfb-libs dnf dnf5 dnf5-plugins mock mock-core-configs mock-filesystem yum dnf-plugins-core dnf-utils dnf-data python3-dnf python3-dnf-plugins-core libdnf libdnf5 libdnf5-cli python3-libdnf python3-hawkey && ostree container commit
+ RUN rpm-ostree override remove firefox firefox-langpacks krfb krfb-libs && ostree container commit
 
 COPY --from=ghcr.io/dantesieg/beblitos:latest /rpms /tmp/akmods-rpms
 RUN find /tmp/akmods-rpms && ostree container commit
+
+rpm-ostree install \
+    libva-nvidia-driver \
+    mesa-vulkan-drivers.i686 \
+    nvidia-driver \
+    nvidia-driver-cuda \
+    nvidia-driver-cuda-libs.i686 \
+    nvidia-driver-libs.i686 \
+    nvidia-driver-NVML.i686 \
+    nvidia-driver-NvFBCOpenGL \
+    nvidia-modprobe \
+    nvidia-persistenced \
+    nvidia-settings \
+    /tmp/akmods-rpms/kmods/kmod-nvidia*.rpm && \
+    ostree container commit
 
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
