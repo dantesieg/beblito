@@ -22,38 +22,6 @@ KERNEL="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
 find /tmp/akmods-rpms/
 
-sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-cisco-openh264.repo
-sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-updates-archive.repo
-#sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora.repo
-sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-updates.repo
-
-cd /tmp
-
-curl -L https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libEGL-24.1.2-7.fc40.x86_64.rpm -o mesa-libEGL-24.1.2-7.fc40.x86_64.rpm
-rpm-ostree override replace https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-dri-drivers-24.1.2-7.fc40.x86_64.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-filesystem-24.1.2-7.fc40.x86_64.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-va-drivers-24.1.2-7.fc40.x86_64.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libEGL-24.1.2-7.fc40.x86_64.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libGL-24.1.2-7.fc40.x86_64.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-vulkan-drivers-24.1.2-7.fc40.x86_64.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libglapi-24.1.2-7.fc40.x86_64.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libgbm-24.1.2-7.fc40.x86_64.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-libOSMesa-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-libglapi-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-libgbm-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-dri-drivers-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-filesystem-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-va-drivers-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-libEGL-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-libGL-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-vulkan-drivers-24.1.2-7.fc40.i686.rpm \
-                            
-                            
-
-# rpm-ostree override replace /tmp/mesa-libEGL-24.1.2-7.fc40.x86_64.rpm
-sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora.repo
-sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora-updates.repo
-
 rpm-ostree install \
     libva-nvidia-driver \
     mesa-vulkan-drivers.i686 \
@@ -67,9 +35,6 @@ rpm-ostree install \
     nvidia-persistenced \
     nvidia-settings \
     /tmp/akmods-rpms/kmod-nvidia-*.rpm
-
-
-sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora-updates-archive.repo
 
 #rpm-ostree install \
 #    akmods \
