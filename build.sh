@@ -22,6 +22,10 @@ KERNEL="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
 find /tmp/akmods-rpms/
 
+sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-cisco-openh264.repo
+sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-updates-archive.repo
+
+
 rpm-ostree install \
     libva-nvidia-driver \
     mesa-vulkan-drivers.i686 \
@@ -35,6 +39,9 @@ rpm-ostree install \
     nvidia-persistenced \
     nvidia-settings \
     /tmp/akmods-rpms/kmod-nvidia-*.rpm
+
+
+sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora-updates-archive.repo
 
 #rpm-ostree install \
 #    akmods \
