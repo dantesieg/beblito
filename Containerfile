@@ -42,14 +42,11 @@ ARG IMAGE_NAME="${IMAGE_NAME:-beblito}"
 
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
-FROM quay.io/fedora-ostree-desktops/kinoite:40 AS builder
+FROM quay.io/fedora-ostree-desktops/kinoite:40
 
 ### 3. MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
-
-COPY --from=ghcr.io/dantesieg/beblitos:latest /rpms /tmp/akmods-rpms
-RUN find /tmp/akmods-rpms && ostree container commit
 
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
@@ -73,9 +70,6 @@ RUN mkdir -p /var/lib/alternatives && \
 
 # RUN rpm-ostree override remove firefox firefox-langpacks krfb krfb-libs dnf dnf5 dnf5-plugins mock mock-core-configs mock-filesystem yum dnf-plugins-core dnf-utils dnf-data python3-dnf python3-dnf-plugins-core libdnf libdnf5 libdnf5-cli python3-libdnf python3-hawkey && ostree container commit
  RUN rpm-ostree override remove firefox firefox-langpacks krfb krfb-libs && ostree container commit
-
-COPY --from=ghcr.io/dantesieg/beblitos:latest /rpms /tmp/akmods-rpms
-RUN find /tmp/akmods-rpms && ostree container commit
 
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
