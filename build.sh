@@ -39,14 +39,14 @@ rpm-ostree override replace https://kojipkgs.fedoraproject.org//packages/mesa/24
                             https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libglapi-24.1.2-7.fc40.x86_64.rpm \
                             https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libgbm-24.1.2-7.fc40.x86_64.rpm \
                             https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-libOSMesa-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libglapi-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libgbm-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-dri-drivers-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-filesystem-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-va-drivers-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libEGL-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libGL-24.1.2-7.fc40.i686.rpm \
-                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-vulkan-drivers-24.1.2-7.fc40.i686.rpm \
+                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-libglapi-24.1.2-7.fc40.i686.rpm \
+                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-libgbm-24.1.2-7.fc40.i686.rpm \
+                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-dri-drivers-24.1.2-7.fc40.i686.rpm \
+                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-filesystem-24.1.2-7.fc40.i686.rpm \
+                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-va-drivers-24.1.2-7.fc40.i686.rpm \
+                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-libEGL-24.1.2-7.fc40.i686.rpm \
+                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-libGL-24.1.2-7.fc40.i686.rpm \
+                            https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/i686/mesa-vulkan-drivers-24.1.2-7.fc40.i686.rpm \
                             
                             
 
