@@ -76,7 +76,7 @@ RUN rpm-ostree install fontconfig-font-replacements fontconfig-enhanced-defaults
 COPY --from=ghcr.io/dantesieg/beblitos:latest /rpms /tmp/akmods-rpms
 RUN find /tmp/akmods-rpms && ostree container commit
 
-rpm-ostree install \
+RUN rpm-ostree install \
     libva-nvidia-driver \
     mesa-vulkan-drivers.i686 \
     nvidia-driver \
