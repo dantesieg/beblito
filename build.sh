@@ -24,14 +24,14 @@ find /tmp/akmods-rpms/
 
 sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-cisco-openh264.repo
 sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-updates-archive.repo
-sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora.repo
+#sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora.repo
 sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-updates.repo
 
 cd /tmp
 
 curl -L https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libEGL-24.1.2-7.fc40.x86_64.rpm -o mesa-libEGL-24.1.2-7.fc40.x86_64.rpm
 
-rpm-ostree override replace --remove=mesa-libEGL  --install=https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libEGL-24.1.2-7.fc40.x86_64.rpm
+rpm-ostree override replace --remove=mesa-libEGL  --install=/tmp/mesa-libEGL-24.1.2-7.fc40.x86_64.rpm
 sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora.repo
 sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora-updates.repo
 
