@@ -20,6 +20,20 @@ KERNEL="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
 #### Example for enabling a System Unit File
 
+rpm-ostree install \
+    libva-nvidia-driver \
+    mesa-vulkan-drivers.i686 \
+    nvidia-driver \
+    nvidia-driver-cuda \
+    nvidia-driver-cuda-libs.i686 \
+    nvidia-driver-libs.i686 \
+    nvidia-driver-NVML.i686 \
+    nvidia-driver-NvFBCOpenGL \
+    nvidia-modprobe \
+    nvidia-persistenced \
+    nvidia-settings \
+    /tmp/akmods-rpms/kmod-nvidia-*.rpm
+
 #rpm-ostree install \
 #    akmods \
 #    dnf \
