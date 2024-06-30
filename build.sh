@@ -20,47 +20,47 @@ KERNEL="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
 #### Example for enabling a System Unit File
 
-rpm-ostree install \
-    akmods \
-    dnf \
-    mock
+#rpm-ostree install \
+#    akmods \
+#    dnf \
+#    mock
 
-    curl -L https://negativo17.org/repos/fedora-nvidia.repo -o /etc/yum.repos.d/fedora-nvidia.repo
+#    curl -L https://negativo17.org/repos/fedora-nvidia.repo -o /etc/yum.repos.d/fedora-nvidia.repo
 
-    rpm-ostree install \
-        nvidia-driver \
-        nvidia-driver-libs.i686 \
-        nvidia-settings
+#    rpm-ostree install \
+#        nvidia-driver \
+#        nvidia-driver-libs.i686 \
+#        nvidia-settings
 
-cd /tmp
+#cd /tmp
 
 # Either successfully build and install the kernel modules, or fail early with debug output
-rpm -qa |grep nvidia
-KERNEL_VERSION="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
-NVIDIA_AKMOD_VERSION="$(basename "$(rpm -q "akmod-nvidia" --queryformat '%{VERSION}-%{RELEASE}')" ".fc${RELEASE%%.*}")"
+#rpm -qa |grep nvidia
+#KERNEL_VERSION="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
+#NVIDIA_AKMOD_VERSION="$(basename "$(rpm -q "akmod-nvidia" --queryformat '%{VERSION}-%{RELEASE}')" ".fc${RELEASE%%.*}")"
 
 
-akmods --force --kernels "${KERNEL}" --kmod "nvidia"
+#akmods --force --kernels "${KERNEL}" --kmod "nvidia"
 
-modinfo /usr/lib/modules/${KERNEL}/extra/nvidia/nvidia{,-drm,-modeset,-peermem,-uvm}.ko.xz > /dev/null || \
-(cat /var/cache/akmods/nvidia/${NVIDIA_AKMOD_VERSION}-for-${KERNEL}.failed.log && exit 1)
+#modinfo /usr/lib/modules/${KERNEL}/extra/nvidia/nvidia{,-drm,-modeset,-peermem,-uvm}.ko.xz > /dev/null || \
+#(cat /var/cache/akmods/nvidia/${NVIDIA_AKMOD_VERSION}-for-${KERNEL}.failed.log && exit 1)
 
 # create a directory for later copying of resulting nvidia specific artifacts
-mkdir -p /var/cache/rpms/kmods/nvidia
-mkdir -p /tmp/rpms/nvidia/
-mkdir -p /rpms
+#mkdir -p /var/cache/rpms/kmods/nvidia
+#mkdir -p /tmp/rpms/nvidia/
+#mkdir -p /rpms
 
-cat <<EOF > /var/cache/rpms/kmods/nvidia/nvidia-vars
-KERNEL_VERSION=${KERNEL_VERSION}
-RELEASE=${RELEASE}
-NVIDIA_AKMOD_VERSION=${NVIDIA_AKMOD_VERSION}
-EOF
+#cat <<EOF > /var/cache/rpms/kmods/nvidia/nvidia-vars
+#KERNEL_VERSION=${KERNEL_VERSION}
+#RELEASE=${RELEASE}
+#NVIDIA_AKMOD_VERSION=${NVIDIA_AKMOD_VERSION}
+#EOF
 
-cp -v /var/cache/akmods/nvidia/*.rpm \
-   /tmp/rpms/nvidia/
+#cp -v /var/cache/akmods/nvidia/*.rpm \
+#   /tmp/rpms/nvidia/
 
-cp -v /var/cache/akmods/nvidia/*.rpm \
-   /rpms
+#cp -v /var/cache/akmods/nvidia/*.rpm \
+#   /rpms
 
 rpm -qa |grep nvidia-kmod
 
