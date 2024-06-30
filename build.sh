@@ -30,6 +30,7 @@ sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-updates.repo
 cd /tmp
 
 curl -L https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/x86_64/mesa-libEGL-24.1.2-7.fc40.x86_64.rpm -o mesa-libEGL-24.1.2-7.fc40.x86_64.rpm
+rpm-ostree override replace https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/aarch64/mesa-libgbm-24.1.2-7.fc40.aarch64.rpm https://kojipkgs.fedoraproject.org//packages/mesa/24.1.2/7.fc40/aarch64/mesa-libglapi-24.1.2-7.fc40.aarch64.rpm
 
 rpm-ostree override replace /tmp/mesa-libEGL-24.1.2-7.fc40.x86_64.rpm
 sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/fedora.repo
