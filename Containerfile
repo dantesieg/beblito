@@ -48,6 +48,9 @@ FROM quay.io/fedora-ostree-desktops/kinoite:40
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
+RUN rpm-ostree install dnf5 && ostree container commit
+RUN dnf5 upgrade -y && ostree container commit
+
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
     curl -s "https://copr.fedorainfracloud.org/coprs/g/kernel-vanilla/next/repo/fedora-rawhide/group_kernel-vanilla-next-fedora-rawhide.repo" | sudo tee "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:group_kernel-vanilla:next.repo" && \
@@ -58,8 +61,6 @@ RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-comma
 
 RUN rpm-ostree cliwrap install-to-root /
 
-RUN rpm-ostree install dnf5 && ostree container commit
-RUN dnf5 upgrade -y && ostree container commit
 RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:group_kernel-vanilla:next' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 # RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 RUN rpm-ostree install fontconfig-font-replacements fontconfig-enhanced-defaults distrobox && ostree container commit
