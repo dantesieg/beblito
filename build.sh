@@ -22,7 +22,7 @@ KERNEL="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
 find /tmp/akmods-rpms/
 
-rpm ostree install dnf5
+rpm-ostree install dnf5
 dnf5 upgrade -y
 
 rpm-ostree install \
