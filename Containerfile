@@ -60,7 +60,7 @@ RUN rpm-ostree cliwrap install-to-root /
 
 RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:group_kernel-vanilla:next' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 # RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
-RUN rpm-ostree install fontconfig-font-replacements fontconfig-enhanced-defaults distrobox && ostree container commit
+
 
 COPY *.sh /tmp/
 COPY --from=ghcr.io/dantesieg/beblitos:latest /rpms /tmp/akmods-rpms
@@ -68,8 +68,10 @@ RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     ostree container commit
 
+RUN rpm-ostree install fontconfig-font-replacements fontconfig-enhanced-defaults distrobox protontricks && ostree container commit
+
 # RUN rpm-ostree override remove firefox firefox-langpacks krfb krfb-libs dnf dnf5 dnf5-plugins mock mock-core-configs mock-filesystem yum dnf-plugins-core dnf-utils dnf-data python3-dnf python3-dnf-plugins-core libdnf libdnf5 libdnf5-cli python3-libdnf python3-hawkey && ostree container commit
- RUN rpm-ostree override remove firefox firefox-langpacks krfb krfb-libs && ostree container commit
+ RUN rpm-ostree override remove firefox firefox-langpacks krfb krfb-libs dnf5 dnf-data libdnf5 libdnf5-cli sdbus-cpp && ostree container commit
 
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
