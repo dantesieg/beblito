@@ -82,5 +82,8 @@ rpm-ostree install \
 
 rpm -qa |grep nvidia-kmod
 
+du -h /var
+du -h /tmp
+
 #    rpm-ostree install \
 #        /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
